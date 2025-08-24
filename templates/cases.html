@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Cases</h1>
+<p class="muted">Client confidentiality respected. Summaries are anonymized.</p>
+<table class="table">
+  <thead><tr><th>Title</th><th>Court</th><th>Year</th><th>Result</th></tr></thead>
+  <tbody>
+    {% for c in cases %}
+    <tr>
+      <td>{{ c.title }}</td>
+      <td>{{ c.court }}</td>
+      <td>{{ c.year }}</td>
+      <td>{{ c.result }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

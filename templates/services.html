@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Practice Areas</h1>
+<div class="cards">
+  {% for a in services %}
+    <div class="card">
+      <h3>{{ a.title }}</h3>
+      <p>{{ a.desc }}</p>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

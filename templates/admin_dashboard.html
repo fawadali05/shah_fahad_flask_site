@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Admin Dashboard</h1>
+<div class="card">
+  <h2>Home/Bio</h2>
+  <form method="post" action="{{ url_for('admin_save_site') }}" enctype="multipart/form-data">
+    <label>Hero Title <input type="text" name="hero_title" value="{{ site.hero_title }}"></label>
+    <label>Hero Sub <input type="text" name="hero_sub" value="{{ site.hero_sub }}"></label>
+    <label>Bio <textarea name="bio" rows="4">{{ site.bio }}</textarea></label>
+    <div class="grid3">
+      <label>Won <input type="number" name="won" value="{{ site.stats.won }}"></label>
+      <label>Lost <input type="number" name="lost" value="{{ site.stats.lost }}"></label>
+      <label>Total <input type="number" name="total" value="{{ site.stats.total }}"></label>
+    </div>
+    <label>Replace Portrait <input type="file" name="portrait"></label>
+    <button class="btn" type="submit">Save</button>
+  </form>
+</div>
+
+<div class="card">
+  <h2>Practice Areas</h2>
+  <form method="post" action="{{ url_for('admin_save_services') }}">
+    <div id="services">
+      {% for a in services %}
+      <div class="row">
+        <input type="text" name="title[]" value="{{ a.title }}" placeholder="Title">
+        <input type="text" name="desc[]" value="{{ a.desc }}" placeholder="Short description">
+      </div>
+      {% endfor %}
+    </div>
+    <button class="btn small" type="button" onclick="addService()">+ Add</button>
+    <button class="btn" type="submit">Save</button>
+  </form>
+</div>
+
+<div class="card">
+  <h2>Cases</h2>
+  <form method="post" action="{{ url_for('admin_save_cases') }}">
+    <table class="table small">
+      <thead><tr><th>Title</th><th>Court</th><th>Year</th><th>Result</th></tr></thead>
+      <tbody id="cases">
+        {% for c in cases %}
+        <tr>
+          <td><input type="text" name="title[]" value="{{ c.title }}"></td>
+          <td><input type="text" name="court[]" value="{{ c.court }}"></td>
+          <td><input type="text" name="year[]" value="{{ c.year }}"></td>
+          <td><input type="text" name="result[]" value="{{ c.result }}"></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <button class="btn small" type="button" onclick="addCase()">+ Add</button>
+    <button class="btn" type="submit">Save</button>
+  </form>
+</div>
+<script>
+function addService(){
+  const d = document.getElementById('services');
+  const row = document.createElement('div');
+  row.className = 'row';
+  row.innerHTML = '<input type="text" name="title[]" placeholder="Title"> <input type="text" name="desc[]" placeholder="Short description">';
+  d.appendChild(row);
+}
+function addCase(){
+  const d = document.getElementById('cases');
+  const tr = document.createElement('tr');
+  tr.innerHTML = '<td><input type="text" name="title[]"></td><td><input type="text" name="court[]"></td><td><input type="text" name="year[]"></td><td><input type="text" name="result[]"></td>';
+  d.appendChild(tr);
+}
+</script>
+{% endblock %}

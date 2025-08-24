@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-text">
+      <h1>{{ site.hero_title }}</h1>
+      <p class="sub">{{ site.hero_sub }}</p>
+      <div class="cta">
+        <a class="btn" href="https://wa.me/92{{ SITE.phone|replace(' ','')|replace('-','') }}">WhatsApp</a>
+        <a class="btn outline" href="{{ url_for('contact') }}">Book Consultation</a>
+      </div>
+      <div class="stats">
+        <div><strong>{{ site.stats.won }}</strong><span>Won</span></div>
+        <div><strong>{{ site.stats.lost }}</strong><span>Lost</span></div>
+        <div><strong>{{ site.stats.total }}</strong><span>Total</span></div>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="{{ url_for('static', filename='images/portrait.jpg') }}" alt="Advocate portrait">
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Practice Areas</h2>
+  <div class="cards">
+    {% for a in services %}
+      <div class="card">
+        <h3>{{ a.title }}</h3>
+        <p>{{ a.desc }}</p>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="center"><a class="btn" href="{{ url_for('services') }}">View all services</a></div>
+</section>
+
+<section class="highlight">
+  <h2>Recent Cases</h2>
+  <div class="cards">
+    {% for c in cases %}
+      <div class="card">
+        <h3>{{ c.title }}</h3>
+        <p><strong>{{ c.court }}</strong> • {{ c.year }}</p>
+        <p>{{ c.result }}</p>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="center"><a class="btn outline" href="{{ url_for('cases_view') }}">All cases</a></div>
+</section>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Contact</h1>
+<div class="contact-grid">
+  <div>
+    <p><strong>Phone:</strong> {{ SITE.phone }}</p>
+    <p><strong>Email:</strong> <a href="mailto:{{ SITE.email }}">{{ SITE.email }}</a></p>
+    <p><strong>Address:</strong> {{ SITE.address }}</p>
+    <p><a class="btn" href="https://wa.me/92{{ SITE.phone|replace(' ','')|replace('-','') }}">WhatsApp Now</a></p>
+  </div>
+  <div>
+    <form method="post">
+      <label>Your Name <input type="text" name="name" required></label>
+      <label>Your Email <input type="email" name="email" required></label>
+      <label>Message <textarea name="message" rows="5" required></textarea></label>
+      <button class="btn" type="submit">Send</button>
+      <p class="muted small">Note: This demo saves messages to a JSON file (no email sending configured).</p>
+    </form>
+  </div>
+</div>
+{% endblock %}

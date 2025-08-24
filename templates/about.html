@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>About</h1>
+<div class="about">
+  <img class="about-pic" src="{{ url_for('static', filename='images/portrait.jpg') }}" alt="Advocate portrait">
+  <div>
+    <p>{{ SITE.bio }}</p>
+    <ul class="facts">
+      <li><strong>Location:</strong> Momand (KPK), practising in Peshawar & Puran Aloch</li>
+      <li><strong>Education:</strong> BS LLB — University of Swat</li>
+      <li><strong>Experience:</strong> 2 years (Peshawar), 1 year (Puran Aloch)</li>
+      <li><strong>Cases:</strong> Won {{ SITE.stats.won }} • Lost {{ SITE.stats.lost }} • Total {{ SITE.stats.total }}</li>
+    </ul>
+  </div>
+</div>
+{% endblock %}
